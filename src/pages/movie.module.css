@@ -1,0 +1,39 @@
+.movies{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.movie_obj{
+    margin-bottom: 40px;
+}
+
+.movie_review_title:before{
+    background-color: #f5c518;
+    content: '';
+    margin-left: -0.75rem;
+    align-self: flex-start;
+    position: absolute;
+    height: 44px;
+    width: 4px;
+}
+
+.movie_review_title{
+    font-size: xx-large;
+}
+
+.user_reviews{
+    margin-bottom: 30px;
+    margin-top: 20px;
+    width: fit-content;
+}
+
+.movie_review_user{
+    width: fit-content;
+    border-bottom: 2px dashed #f5c518;
+    padding-bottom: 4px;
+}
+
+.movie_review_user_review{
+    margin-top: 10px;
+}
