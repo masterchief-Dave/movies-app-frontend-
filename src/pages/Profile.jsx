@@ -1,0 +1,409 @@
+import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import styles from './profile.module.css'
+import { GoGear } from 'react-icons/go'
+import { MdRateReview } from 'react-icons/md'
+import { IoIosCreate } from 'react-icons/io'
+import { useSelector } from 'react-redux'
+
+function Profile() {
+  const { user } = useSelector((state) => state.auth)
+  const [displaySettings, setDisplaySettings] = useState(true)
+  const [displayReviews, setDisplayReviews] = useState(false)
+  const [displayMovies, setDisplayMovies] = useState(false)
+  let path
+
+  // console.log(user.data.user._id)
+  useEffect(() => {
+    path = window.location.href.split('/')
+    // console.log('refresh')
+    if (path[5] === 'settings') {
+      setDisplaySettings(true)
+      setDisplayReviews(false)
+      setDisplayMovies(false)
+    } else if (path[5] === 'create') {
+      setDisplaySettings(false)
+      setDisplayReviews(false)
+      setDisplayMovies(true)
+    } else if (path[5] === 'reviews') {
+      setDisplaySettings(false)
+      setDisplayReviews(true)
+      setDisplayMovies(false)
+    }
+  }, [path])
+
+  function handleClick(e) {
+    e.preventDefault()
+    // console.log(e.target.href)
+    const pathname = e.target.href.split('/')
+
+    if (pathname[5] === 'settings') {
+      setDisplaySettings(true)
+      setDisplayReviews(false)
+      setDisplayMovies(false)
+    } else if (pathname[5] === 'create') {
+      setDisplaySettings(false)
+      setDisplayReviews(false)
+      setDisplayMovies(true)
+    } else if (pathname[5] === 'reviews') {
+      setDisplaySettings(false)
+      setDisplayReviews(true)
+      setDisplayMovies(false)
+    }
+
+    // console.log('displaySettings', displaySettings)
+    // console.log('displayMovies', displayMovies)
+    // console.log('displayReviews', displayReviews)
+  }
+
+  function handleSubmitProfile(e) {
+    e.preventDefault()
+  }
+  return (
+    <div id={styles.user}>
+      <div id={styles.user_profile} className="shadow-2xl">
+        <div id={styles.user_profile_menu}>
+          <ul className="menu  w-56 p-2 rounded-box">
+            <li>
+              <Link
+                to={`/user/${user.data.user._id}/settings`}
+                onClick={handleClick}
+              >
+                <GoGear />
+                SETTINGS
+              </Link>
+            </li>
+            <li>
+              <Link
+                to={`/user/${user.data.user._id}/reviews`}
+                onClick={handleClick}
+              >
+                <MdRateReview />
+                MY REVIEWS
+              </Link>
+            </li>
+            <li>
+              <Link
+                to={`/user/${user.data.user._id}/create`}
+                onClick={handleClick}
+              >
+                <IoIosCreate />
+                CREATE MOVIES
+              </Link>
+            </li>
+          </ul>
+        </div>
+        <div id={styles.user_profile_content}>
+          <div id={styles.sage}>
+            <div
+              id={styles.user_settings}
+              className={
+                displaySettings
+                  ? styles.user_display_block
+                  : styles.user_display_none
+              }
+            >
+              <h1 className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500 font-extrabold">
+                {' '}
+                YOUR ACCOUNT SETTINGS
+              </h1>
+              <form
+                action="/user/:id/changeprofile"
+                className="w-full max-w-lg"
+                autoComplete="off"
+                onSubmit={handleSubmitProfile}
+              >
+                <div className="flex flex-wrap -mx-3 mb-6">
+                  <div className="w-full px-3">
+                    <label
+                      className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                      htmlFor="user_name"
+                    >
+                      Name
+                    </label>
+                    <input
+                      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      id="user_name"
+                      type="text"
+                      placeholder="Name"
+                      name="username"
+                      disabled
+                      value={user.data.user.name}
+                    />
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap -mx-3 mb-6">
+                  <div className="w-full px-3">
+                    <label
+                      className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                      htmlFor="user_email"
+                    >
+                      Email Address
+                    </label>
+                    <input
+                      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      id="user_email"
+                      type="email"
+                      placeholder="Email"
+                      name="email"
+                      disabled
+                      value={user.data.user.email}
+                    />
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <button
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    type="submit"
+                  >
+                    Edit Settings
+                  </button>
+
+                  {/* <button
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    type="submit"
+                  >
+                    Save
+                  </button> */}
+                </div>
+              </form>
+              <hr style={{ marginTop: '30px', marginBottom: '30px' }} />
+
+              <h1 className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500 font-extrabold">
+                CHANGE PASSWORD
+              </h1>
+
+              <form action="" className="w-full max-w-lg" autoComplete="off">
+                <div className="flex flex-wrap -mx-3 mb-6">
+                  <div className="w-full px-3">
+                    <label
+                      className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                      htmlFor="current_password"
+                    >
+                      Current Password
+                    </label>
+                    <input
+                      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      id="current_password"
+                      type="password"
+                      placeholder="Current Password"
+                      name="currentPassword"
+                      disabled
+                      value="**********"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap -mx-3 mb-6">
+                  <div className="w-full px-3">
+                    <label
+                      className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                      htmlFor="new_password"
+                    >
+                      New Password
+                    </label>
+                    <input
+                      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      id="new_password"
+                      type="password"
+                      placeholder="New Password"
+                      name="newPassword"
+                      disabled
+                      value="**********"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <button
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    type="submit"
+                  >
+                    Edit Password
+                  </button>
+
+                  {/* <button
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    type="submit"
+                  >
+                    Save 
+                  </button> */}
+                </div>
+              </form>
+            </div>
+            <div
+              id={styles.user_reviews}
+              className={
+                displayReviews
+                  ? styles.user_display_block
+                  : styles.user_display_none
+              }
+            >
+              {' '}
+              user reviews
+            </div>
+            <div
+              id={styles.admin_user_create}
+              className={
+                displayMovies
+                  ? styles.user_display_block
+                  : styles.user_display_none
+              }
+            >
+              <h1 className="block text-sm font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500 font-extrabold">
+                {' '}
+                CREATE NEW MOVIES{' '}
+              </h1>
+              <form action="" className="w-full max-w-lg">
+                <div className="flex flex-wrap -mx-3 mb-6">
+                  <div className="w-full px-3">
+                    <label
+                      className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                      htmlFor="grid-title"
+                    >
+                      Title
+                    </label>
+                    <input
+                      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      id="grid-title"
+                      type="text"
+                      placeholder="Pirates of the Caribbean"
+                    />
+                    {/* <p className="text-gray-600 text-xs italic">
+                      Make it as long and as crazy as you'd like
+                    </p> */}
+                  </div>
+                </div>
+                {/* this is for the genre and the year */}
+                <div className="flex flex-wrap mb-6 -mx-3">
+                  <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 ">
+                    <label
+                      className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                      htmlFor="grid-genre"
+                    >
+                      Genre
+                    </label>
+                    <div className="relative">
+                      <select
+                        className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                        id="grid-genre"
+                      >
+                        <option value="comedy">Comedy</option>
+                        <option value="adventure">Adventure</option>
+                        <option value="anime">Anime</option>
+                        <option value="fantasy">Fantasy</option>
+                        <option value="drama">Drama</option>
+                        <option value="action">Action</option>
+                        <option value="thriller">Thriller</option>
+                        <option value="fiction">Fiction</option>
+                        <option value="horror">Horror</option>
+                        <option value="documentary">Documentary</option>
+                        <option value="family">Family</option>
+                        <option value="crime">Crime</option>
+                        <option value="animation">Animation</option>
+                      </select>
+                      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                        <svg
+                          className="fill-current h-4 w-4"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                    <label
+                      className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                      htmlFor="grid-year"
+                    >
+                      Release Year
+                    </label>
+                    <input
+                      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      id="grid-last-name"
+                      type="date"
+                      placeholder="2022"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap -mx-3 mb-6">
+                  <div className="w-full px-3">
+                    <label
+                      className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                      htmlFor="grid-cast"
+                    >
+                      Cast
+                    </label>
+                    <input
+                      className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      id="grid-cast"
+                      type="text"
+                      placeholder="Geoffrey Rush, Orlando Bloom"
+                    />
+                    {/* <p className="text-gray-600 text-xs italic">
+                      Make it as long and as crazy as you'd like
+                    </p> */}
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap -mx-3 mb-6">
+                  <div className="w-full px-3">
+                    <label
+                      className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                      htmlFor="grid-story"
+                    >
+                      Storyline
+                    </label>
+                    <textarea
+                      className='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"'
+                      id="grid-story"
+                    />
+                    {/* <p className="text-gray-600 text-xs italic">
+                      Make it as long and as crazy as you'd like
+                    </p> */}
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap -mx-3 mb-6">
+                  <div className="w-full px-3">
+                    <label
+                      className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                      htmlFor="grid-directors"
+                    >
+                      Directors
+                    </label>
+                    <input
+                      className='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"'
+                      placeholder="John Krasinksi"
+                      id="grid-directors"
+                    />
+                    {/* <p className="text-gray-600 text-xs italic">
+                      Make it as long and as crazy as you'd like
+                    </p> */}
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <button
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    type="submit"
+                  >
+                    Create
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default Profile
