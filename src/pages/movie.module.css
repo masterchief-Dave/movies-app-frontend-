@@ -1,39 +1,104 @@
-.movies{
-    display: flex;
-    flex-direction: column;
+#movies {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+#movie_obj {
+  margin-bottom: 40px;
+  padding: 20px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  /* background-image: linear-gradient(to right, #ec4899 , #8b5cf6); */
+  /* className="bg-gradient-to-r from-purple-500 to-pink-500" */
+}
+
+.movie_obj img{
+    margin-bottom: 12px;
+}
+
+.movie_reviews{
     padding: 20px;
 }
 
-.movie_obj{
-    margin-bottom: 40px;
+.movie_review_title:before {
+  background-color: #f5c518;
+  content: '';
+  margin-left: -0.75rem;
+  align-self: flex-start;
+  position: absolute;
+  height: 44px;
+  width: 4px;
 }
 
-.movie_review_title:before{
-    background-color: #f5c518;
-    content: '';
-    margin-left: -0.75rem;
-    align-self: flex-start;
-    position: absolute;
-    height: 44px;
-    width: 4px;
+.movie_review_title {
+  font-size: xx-large;
 }
 
-.movie_review_title{
-    font-size: xx-large;
+.user_reviews {
+  margin-bottom: 30px;
+  margin-top: 20px;
+  width: fit-content;
 }
 
-.user_reviews{
-    margin-bottom: 30px;
-    margin-top: 20px;
-    width: fit-content;
+.movie_review_user {
+  width: fit-content;
+  border-bottom: 2px dashed #f5c518;
+  padding-bottom: 4px;
 }
 
-.movie_review_user{
-    width: fit-content;
-    border-bottom: 2px dashed #f5c518;
-    padding-bottom: 4px;
+.movie_review_user_review {
+  margin-top: 10px;
 }
 
-.movie_review_user_review{
+.new_review_user:before {
+  background-color: #f5c518;
+  content: '';
+  margin-left: -0.75rem;
+  align-self: flex-start;
+  position: absolute;
+  height: 30px;
+  width: 4px;
+}
+
+.new_review_user{
+    margin-bottom: 20px;
+    align-self: center;
+    vertical-align: middle;
+}
+
+#movie_details * {
     margin-top: 10px;
+}
+
+#review{
+  display: block;
+}
+
+#element {
+  padding-right: 4px;
+  margin-right: 4px;
+}
+
+#element:not(:last-child):after{
+  
+  /* background-color: #f5c518; */
+  content: ',';
+  /* margin-left: -0.75rem; */
+  align-self: flex-start;
+  position: absolute;
+  height: 20px;
+  width: 4px;
+}
+
+
+@media screen and (min-width: 700px){
+    #movie_obj{
+        display: flex;
+        gap: 20px;
+    }
+
+    #movie_obj img {
+        width: 40%;
+    }
 }

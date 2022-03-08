@@ -1,0 +1,75 @@
+#user{
+    padding: 30px;
+}
+
+#user_profile{
+    display: flex;
+}
+
+#user_profile_content{
+    min-height: 500px;
+    background-color: whitesmoke;
+    width: 100%;
+}
+
+#user_profile_menu{
+    background-image: linear-gradient(to bottom, #ec4899 , #8b5cf6);
+}
+
+#user_settings{
+    position: absolute;
+    /* display: none; */
+    width: 60%;
+}
+
+#user_settings h1 {
+    text-align: left;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#user_reviews{
+    position: absolute;
+    /* display: none; */
+    width: 60%;
+}
+
+#admin_user_create{
+    position: absolute;
+    /* display: block; */
+    width: 60%;
+}
+
+.user_display_block{
+    display: block;
+}
+
+.user_display_none{
+    display: none;
+}
+
+#sage{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    height: 700px;
+}
+
+input{
+    display: block;
+}
+
+/* the create movies section styles */
+#admin_user_create h1{
+    text-align: left;
+    margin-top: 20px;
+}
+
+/* #password_savebtn */
+/* #password_btn{
+    position: relative;
+}
+#password_editbtn{
+    position: absolute;
+} */

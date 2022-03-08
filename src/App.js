@@ -7,6 +7,7 @@ import Register from './pages/Register'
 import Footer from './components/Footer'
 import Home from './pages/Home'
 import Movie from './pages/Movie'
+import Profile from './pages/Profile'
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/" element={<Home />} />
           <Route path="/movies/:id" element={<Movie />} />
+          <Route path="/user/:id/settings" element={<Profile />} />
+          <Route path="/user/:id/reviews" element={<Profile />} />
+          <Route path="/user/:id/create" element={<Profile />} />
         </Routes>
         <ToastContainer />
         <Footer />
