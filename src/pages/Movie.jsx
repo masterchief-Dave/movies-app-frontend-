@@ -12,6 +12,11 @@ function Movie() {
   const { user } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
 
+  const [reviewForm, setReviewForm] = useState({
+    rating: null,
+    review: ''
+  })
+
   // console.log(movie?.data?.movie)
   console.log(user)
   useEffect(() => {
@@ -93,7 +98,7 @@ function Movie() {
         <div className="new_review">
           <h2 className={styles.new_review_user}>What do you think 🤔? </h2>
           <form action="">
-            <div className="rating" id={styles.rating}>
+            <div className="rating rating-sm" id={styles.rating}>
               <input
                 type="radio"
                 name="rating-2"

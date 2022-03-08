@@ -27,6 +27,24 @@ export const login = createAsyncThunk('auth/login', async (userData, thunk) => {
   return data
 })
 
+export const updatePassword = createAsyncThunk(
+  'auth/updatepassword',
+  async (userData, thunk) => {
+    const token = thunk.getState().auth.user.token
+    console.log(token, userData)
+    const data = await authService.updatePassword(userData, token)
+
+    console.log(data)
+    if (data.message === ('status' || 'fail')) {
+      return thunk.rejectWithValue(data.message)
+    }
+
+    localStorage.setItem('user', JSON.stringify(data))
+
+    return data
+  }
+)
+
 let user = JSON.parse(localStorage.getItem('user'))
 const initialState = {
   isSuccess: false,

@@ -1,16 +1,27 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import styles from './profile.module.css'
 import { GoGear } from 'react-icons/go'
 import { MdRateReview } from 'react-icons/md'
 import { IoIosCreate } from 'react-icons/io'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import {updatePassword, reset} from './../features/auth/auth-slice'
 
 function Profile() {
+  const password1 = useRef()
+  const password2 = useRef()
+  const dispatch = useDispatch()
   const { user } = useSelector((state) => state.auth)
   const [displaySettings, setDisplaySettings] = useState(true)
   const [displayReviews, setDisplayReviews] = useState(false)
   const [displayMovies, setDisplayMovies] = useState(false)
+  const [editPassword, setEditPassword] = useState(true)
+  const [disableSavebtn, setDisableFormBtn] = useState(true)
+  const [formPasswordData, setFormPasswordData] = useState({
+    password: '',
+    newPassword: ''
+  })
+
   let path
 
   // console.log(user.data.user._id)
@@ -30,6 +41,8 @@ function Profile() {
       setDisplayReviews(true)
       setDisplayMovies(false)
     }
+
+
   }, [path])
 
   function handleClick(e) {
@@ -59,6 +72,36 @@ function Profile() {
   function handleSubmitProfile(e) {
     e.preventDefault()
   }
+
+  function handlePassword(e) {
+    e.preventDefault()
+    setEditPassword((prev) => !prev)
+    password1.current.focus()
+    // console.log(editPassword)
+    // console.log('change password btn clicked')
+  }
+
+  function handlePasswordData(e) {
+    setFormPasswordData((prev) => {
+      return {
+        ...prev,
+        [e.target.name]: e.target.value
+      }
+    })
+  }
+
+  function handleSubmitPassword(e) {
+    e.preventDefault()
+    // console.log('submit data')
+    // console.log(formPasswordData)
+    setEditPassword((prev) => !prev)
+    dispatch(updatePassword(formPasswordData))
+    setFormPasswordData((prev) => {
+      
+    })
+    formPasswordData.password2.value = ''
+  }
+
   return (
     <div id={styles.user}>
       <div id={styles.user_profile} className="shadow-2xl">
@@ -66,7 +109,7 @@ function Profile() {
           <ul className="menu  w-56 p-2 rounded-box">
             <li>
               <Link
-                to={`/user/${user.data.user._id}/settings`}
+                to={`/user/${user?.data?.user._id}/settings`}
                 onClick={handleClick}
               >
                 <GoGear />
@@ -75,7 +118,7 @@ function Profile() {
             </li>
             <li>
               <Link
-                to={`/user/${user.data.user._id}/reviews`}
+                to={`/user/${user?.data?.user._id}/reviews`}
                 onClick={handleClick}
               >
                 <MdRateReview />
@@ -84,7 +127,7 @@ function Profile() {
             </li>
             <li>
               <Link
-                to={`/user/${user.data.user._id}/create`}
+                to={`/user/${user?.data?.user._id}/create`}
                 onClick={handleClick}
               >
                 <IoIosCreate />
@@ -128,7 +171,7 @@ function Profile() {
                       placeholder="Name"
                       name="username"
                       disabled
-                      value={user.data.user.name}
+                      value={user?.data?.user.name}
                     />
                   </div>
                 </div>
@@ -148,7 +191,7 @@ function Profile() {
                       placeholder="Email"
                       name="email"
                       disabled
-                      value={user.data.user.email}
+                      value={user?.data?.user.email}
                     />
                   </div>
                 </div>
@@ -175,7 +218,11 @@ function Profile() {
                 CHANGE PASSWORD
               </h1>
 
-              <form action="" className="w-full max-w-lg" autoComplete="off">
+              <form
+                className="w-full max-w-lg"
+                autoComplete="off"
+                onSubmit={handleSubmitPassword}
+              >
                 <div className="flex flex-wrap -mx-3 mb-6">
                   <div className="w-full px-3">
                     <label
@@ -189,9 +236,11 @@ function Profile() {
                       id="current_password"
                       type="password"
                       placeholder="Current Password"
-                      name="currentPassword"
-                      disabled
-                      value="**********"
+                      name="password"
+                      disabled={editPassword}
+                      value={FormData.password}
+                      onChange={handlePasswordData}
+                      ref={password1}
                     />
                   </div>
                 </div>
@@ -210,26 +259,35 @@ function Profile() {
                       type="password"
                       placeholder="New Password"
                       name="newPassword"
-                      disabled
-                      value="**********"
+                      disabled={editPassword}
+                      value={FormData.newPassword}
+                      onChange={handlePasswordData}
+                      ref={password2}
                     />
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between">
+                <div
+                  className="flex items-center justify-between"
+                  id={styles.password_btn}
+                >
                   <button
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                    type="submit"
+                    className="bg-blue-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    type="reset"
+                    onClick={handlePassword}
+                    id={styles.password_editbtn}
                   >
-                    Edit Password
+                    {editPassword ? 'Edit Password' : 'Cancel'}
                   </button>
 
-                  {/* <button
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  <button
+                    className="bg-blue-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     type="submit"
+                    id={styles.password_savebtn}
+                    disabled={editPassword}
                   >
-                    Save 
-                  </button> */}
+                    Save Password
+                  </button>
                 </div>
               </form>
             </div>

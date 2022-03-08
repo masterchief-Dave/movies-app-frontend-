@@ -29,8 +29,26 @@ const login = async (userData) => {
   return data
 }
 
+const updatePassword = async (userData, token) => {
+  const response = await fetch(
+    `http://localhost:8000/api/v1/users/updatepassword`,
+    {
+      method: 'POST',
+      body: JSON.stringify(userData),
+      headers: {
+        'content-type': 'application/json',
+        Authorization: `Bearer ${token}`
+      }
+    }
+  )
+
+  const data = await response.json()
+  return data
+}
+
 export const authService = {
   createUser,
   logout,
-  login
+  login,
+  updatePassword
 }
