@@ -15,9 +15,12 @@ function Login() {
   const { isSuccess, isError, message } = useSelector((state) => state.auth)
   const navigate = useNavigate()
 
+
+
   useEffect(() => {
+    console.log(isError, isSuccess)
     if (isSuccess) {
-      toast.success('Login successful')
+      // toast.success('Login successful')
       dispatch(reset())
       navigate('/')
     }

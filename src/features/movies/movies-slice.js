@@ -27,6 +27,25 @@ export const getMovie = createAsyncThunk(
   }
 )
 
+export const createMovies = createAsyncThunk(
+  'movie/create',
+  async (movieData, thunk) => {
+    const token = thunk.getState().auth.user.token
+    const user = thunk.getState().auth.user
+    console.log(user)
+    const data = await moviesService.createMovies(movieData, token)
+
+    if (data.status === ('fail' || 'error')) {
+      console.log(data.message)
+      return thunk.rejectWithValue(data.message)
+    }
+
+    console.log(data)
+
+    return data
+  }
+)
+
 const initialState = {
   movie: {},
   movies: [],
@@ -77,6 +96,21 @@ const moviesSlice = createSlice({
         state.message = action.payload
       })
       .addCase(getMovie.fulfilled, (state, action) => {
+        state.loading = false
+        state.isError = false
+        state.isSuccess = true
+        state.movie = action.payload
+      })
+      .addCase(createMovies.pending, (state, action) => {
+        state.loading = true
+      })
+      .addCase(createMovies.rejected, (state, action) => {
+        state.loading = true
+        state.isError = true
+        state.isSuccess = false
+        state.message = action.payload
+      })
+      .addCase(createMovies.fulfilled, (state, action) => {
         state.loading = false
         state.isError = false
         state.isSuccess = true
