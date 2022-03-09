@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { reset, getMovies } from './../features/movies/movies-slice'
 import { useEffect } from 'react'
+import logo1 from './../img1.jpg'
 
 function Home() {
   const movies = useSelector((state) => state.movie)
@@ -18,10 +19,10 @@ function Home() {
     movies?.movies.data?.movies &&
     movies.movies.data.movies.map((el) => {
       return (
-        <div className={styles.movies_obj}>
+        <div className={styles.movies_obj} key={el._id}>
           <img
             className="object-cover"
-            src="http://via.placeholder.com/640x360"
+            src={logo1}
             alt="Man looking at item at a store"
           />
 
@@ -37,7 +38,7 @@ function Home() {
               className="mt-2 text-slate-500 text-sm"
               id={styles.movie_summary}
             >
-              {el.storyline.substring(1, 100)}...
+              {el.storyline.substring(0, 100)}...
             </p>
 
             <Link to={`/movies/${el._id}`}>

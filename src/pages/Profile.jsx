@@ -6,6 +6,8 @@ import { MdRateReview } from 'react-icons/md'
 import { IoIosCreate } from 'react-icons/io'
 import { useSelector, useDispatch } from 'react-redux'
 import {updatePassword, reset} from './../features/auth/auth-slice'
+import {createMovies, reset as resetMovies} from './../features/movies/movies-slice'
+// import {}
 
 function Profile() {
   const password1 = useRef()
@@ -20,6 +22,14 @@ function Profile() {
   const [formPasswordData, setFormPasswordData] = useState({
     password: '',
     newPassword: ''
+  })
+  const [createFormData, setCreateFormData] = useState({
+    title: '',
+    genre: '',
+    year: '',
+    cast: '',
+    storyline: '',
+    directors: ''
   })
 
   let path
@@ -96,11 +106,30 @@ function Profile() {
     // console.log(formPasswordData)
     setEditPassword((prev) => !prev)
     dispatch(updatePassword(formPasswordData))
-    setFormPasswordData((prev) => {
+    dispatch(reset())
+    // setFormPasswordData((prev) => {
       
-    })
+    // })
     formPasswordData.password2.value = ''
   }
+
+  function handleCreateMovie(e){
+    setCreateFormData((prev) => {
+      return {
+        ...prev,
+        [e.target.name]: e.target.value
+      }
+    })
+  }
+
+  function handleSubmitCreateMovie(e){
+    e.preventDefault()
+    // dispatch some code here
+    dispatch(createMovies(createFormData))
+    dispatch(resetMovies())
+  }
+
+  console.log(createFormData)
 
   return (
     <div id={styles.user}>
@@ -314,7 +343,12 @@ function Profile() {
                 {' '}
                 CREATE NEW MOVIES{' '}
               </h1>
-              <form action="" className="w-full max-w-lg">
+              <form
+                
+                className="w-full max-w-lg"
+                onSubmit={handleSubmitCreateMovie}
+                autoComplete='off'
+              >
                 <div className="flex flex-wrap -mx-3 mb-6">
                   <div className="w-full px-3">
                     <label
@@ -328,6 +362,9 @@ function Profile() {
                       id="grid-title"
                       type="text"
                       placeholder="Pirates of the Caribbean"
+                      name="title"
+                      value={createFormData.title}
+                      onChange={handleCreateMovie}
                     />
                     {/* <p className="text-gray-600 text-xs italic">
                       Make it as long and as crazy as you'd like
@@ -347,7 +384,14 @@ function Profile() {
                       <select
                         className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                         id="grid-genre"
+                        name="genre"
+                        value={createFormData.genre}
+                        onChange={handleCreateMovie}
                       >
+                        <option value="" defaultValue=''>
+                          Genre
+                        </option>
+
                         <option value="comedy">Comedy</option>
                         <option value="adventure">Adventure</option>
                         <option value="anime">Anime</option>
@@ -386,6 +430,9 @@ function Profile() {
                       id="grid-last-name"
                       type="date"
                       placeholder="2022"
+                      name="year"
+                      value={createFormData.year}
+                      onChange={handleCreateMovie}
                     />
                   </div>
                 </div>
@@ -403,6 +450,9 @@ function Profile() {
                       id="grid-cast"
                       type="text"
                       placeholder="Geoffrey Rush, Orlando Bloom"
+                      name="cast"
+                      value={createFormData.cast}
+                      onChange={handleCreateMovie}
                     />
                     {/* <p className="text-gray-600 text-xs italic">
                       Make it as long and as crazy as you'd like
@@ -421,6 +471,9 @@ function Profile() {
                     <textarea
                       className='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"'
                       id="grid-story"
+                      name="storyline"
+                      value={createFormData.storyline}
+                      onChange={handleCreateMovie}
                     />
                     {/* <p className="text-gray-600 text-xs italic">
                       Make it as long and as crazy as you'd like
@@ -440,6 +493,9 @@ function Profile() {
                       className='appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"'
                       placeholder="John Krasinksi"
                       id="grid-directors"
+                      name="directors"
+                      value={createFormData.directors}
+                      onChange={handleCreateMovie}
                     />
                     {/* <p className="text-gray-600 text-xs italic">
                       Make it as long and as crazy as you'd like
