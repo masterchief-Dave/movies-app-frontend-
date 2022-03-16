@@ -8,8 +8,16 @@ export const createReview = createAsyncThunk(
 
     const data = await reviewService.createReview(reviewData, token)
 
-    if (data.message === ('fail' || 'error')) {
-      return thunk.rejectWithValue(data.message)
+    console.log(data)
+
+    if (
+      data.message === ('fail' || 'error' || 'jwt expired') ||
+      data.status === 'fail'
+    ) {
+      // console.log(data)
+      // if the user token has expired then automatically log the user out
+      localStorage.removeItem('user')
+      return thunk.rejectWithValue(data)
     }
 
     // console.log(data)
@@ -23,6 +31,8 @@ export const getReviews = createAsyncThunk(
   async (movieId, thunk) => {
     // console.log(movieId)
     const data = await reviewService.getReviews(movieId)
+
+    // console.log(data)
 
     if (data.status === ('fail' || 'error')) {
       thunk.rejectWithValue(data.message)
@@ -49,8 +59,8 @@ const reviewSlice = createSlice({
   reducers: {
     reset: (state) => {
       state.loading = true
-      state.isError = true
-      state.isSuccess = true
+      state.isError = false
+      state.isSuccess = false
       state.review = {}
       state.reviews = []
       state.message = ''
@@ -68,7 +78,7 @@ const reviewSlice = createSlice({
       })
       .addCase(getReviews.fulfilled, (state, action) => {
         state.loading = false
-        state.isSuccess = true
+        // state.isSuccess = true
         state.reviews = action.payload
       })
   }

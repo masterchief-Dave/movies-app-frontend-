@@ -50,9 +50,10 @@ const initialState = {
   isSuccess: false,
   isError: false,
   message: '',
-  user: user ? user : {},
+  user: user ? user : undefined,
   users: [],
-  loading: false
+  loading: false,
+  loggedIn: {}
 }
 
 const authSlice = createSlice({

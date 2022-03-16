@@ -5,8 +5,11 @@ import { GoGear } from 'react-icons/go'
 import { MdRateReview } from 'react-icons/md'
 import { IoIosCreate } from 'react-icons/io'
 import { useSelector, useDispatch } from 'react-redux'
-import {updatePassword, reset} from './../features/auth/auth-slice'
-import {createMovies, reset as resetMovies} from './../features/movies/movies-slice'
+import { updatePassword, reset } from './../features/auth/auth-slice'
+import {
+  createMovies,
+  reset as resetMovies
+} from './../features/movies/movies-slice'
 // import {}
 
 function Profile() {
@@ -51,8 +54,6 @@ function Profile() {
       setDisplayReviews(true)
       setDisplayMovies(false)
     }
-
-
   }, [path])
 
   function handleClick(e) {
@@ -108,12 +109,12 @@ function Profile() {
     dispatch(updatePassword(formPasswordData))
     dispatch(reset())
     // setFormPasswordData((prev) => {
-      
+
     // })
     formPasswordData.password2.value = ''
   }
 
-  function handleCreateMovie(e){
+  function handleCreateMovie(e) {
     setCreateFormData((prev) => {
       return {
         ...prev,
@@ -122,7 +123,7 @@ function Profile() {
     })
   }
 
-  function handleSubmitCreateMovie(e){
+  function handleSubmitCreateMovie(e) {
     e.preventDefault()
     // dispatch some code here
     dispatch(createMovies(createFormData))
@@ -344,10 +345,9 @@ function Profile() {
                 CREATE NEW MOVIES{' '}
               </h1>
               <form
-                
                 className="w-full max-w-lg"
                 onSubmit={handleSubmitCreateMovie}
-                autoComplete='off'
+                autoComplete="off"
               >
                 <div className="flex flex-wrap -mx-3 mb-6">
                   <div className="w-full px-3">
@@ -388,7 +388,7 @@ function Profile() {
                         value={createFormData.genre}
                         onChange={handleCreateMovie}
                       >
-                        <option value="" defaultValue=''>
+                        <option value="" defaultValue="">
                           Genre
                         </option>
 
