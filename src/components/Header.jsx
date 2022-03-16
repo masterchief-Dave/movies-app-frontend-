@@ -13,7 +13,10 @@ const Header = () => {
     navigate('/')
   }
 
-  // console.log(user?.data.user._id)
+  // console.log(user?.data.user?.name)
+  // console.log(user)
+  const initial = user && user?.data.user?.name.split(' ')[0][0]
+  // console.log(initial)
   return (
     <>
       <div className="navbar ">
@@ -38,7 +41,7 @@ const Header = () => {
               <Link to={`/user/${user?.data.user._id}/settings`}>
                 <div className="avatar placeholder">
                   <div className="bg-neutral-focus text-neutral-content rounded-full w-8">
-                    <span className='text-xs'> AA </span>
+                    <span className='text-xs'> {initial} </span>
                   </div>
                 </div>
               </Link>

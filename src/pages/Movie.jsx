@@ -26,11 +26,13 @@ function Movie() {
 
   // console.log(movie?.data?.movie)
   // console.log(id)
+  // console.log(user)
   useEffect(() => {
     dispatch(getMovie(id))
     dispatch(reset())
     dispatch(getReviews(id))
     // dispatch(reviewReset())
+    // if()
   }, [id, getReviews, reviewReset])
 
   function handleChange(e) {
@@ -58,22 +60,36 @@ function Movie() {
     dispatch(createReview(review))
   }
 
-  console.log(reviews)
+  // console.log(reviews)
 
-  const reviewElement = reviews?.data && reviews?.data?.reviews.map((el) => {
-    return (
-      <div key={el._id} id={styles.reviews}>
-        <div>
-          <div className="username" id={styles.username}>
-            {' '}
-            {el.user.name}{' '}
-          </div>
-          <div id={styles.rating}> {el.rating} </div>
-          <div id={styles.review}> {el.review} </div>
-        </div>
-      </div>
+  const reviewElement =
+    reviews?.data?.reviews.length < 1 ? (
+      <h2 id={styles.no_review} className="text-lg font-normal">
+        {' '}
+        Be the first to leave a review 😉
+      </h2>
+    ) : (
+      reviews?.data?.reviews.map((el) => {
+        // const reviewDate = el.timestamp
+        // const timestamp = new Date(reviewDate).toLocaleDateString()
+
+        return (
+          <>
+            <div className={styles.user_reviews} key={el._id}>
+              <div className={styles.movie_review_user}>
+                <h3 className=" ">
+                  {' '}
+                  {el.user.name} {new Date(el.timestamp).toLocaleDateString()}
+                  💭💻
+                </h3>
+              </div>
+              <p className={styles.movie_review_user_review}> {el.review}</p>
+            </div>
+            <hr />
+          </>
+        )
+      })
     )
-  })
 
   return (
     <div id={styles.movies} className={styles.all_reviews}>
@@ -125,23 +141,10 @@ function Movie() {
 
       <div className={styles.movie_reviews}>
         <h1 className={styles.movie_review_title}>Movie Reviews</h1>
-        <div className={styles.user_reviews}>
-          <div className={styles.movie_review_user}>
-            <h3 className=" ">(David Bodunrin) (@ 29th sept, 2022) 💭💻</h3>
-          </div>
-          <p className={styles.movie_review_user_review}>
-            {' '}
-            this is a really good movie, I am quite impressed Lorem ipsum dolor
-            sit amet consectetur adipisicing elit. Voluptas maiores in et ut
-            soluta officia sunt quaerat possimus illo, cum reprehenderit,
-            nostrum quia asperiores error doloremque dolor laudantium
-            consequatur reiciendis! Ullam nisi reprehenderit libero adipisci
-            consectetur, tenetur vel ut, rem corrupti omnis optio deleniti
-            veniam sit exercitationem! Obcaecati adipisci excepturi sapiente,
-            iure aliquid ratione culpa sint animi recusandae velit magnam.
-          </p>
-        </div>
-        <div className="new_review">
+
+        {reviewElement}
+
+        <div className="new_review" id={styles.new_review}>
           <h2 className={styles.new_review_user}>What do you think 🤔? </h2>
           <form onSubmit={handleReviewSubmit}>
             <div className="rating rating-sm" id={styles.rating}>
@@ -200,7 +203,7 @@ function Movie() {
           </form>
         </div>
 
-        <>{reviewElement}</>
+        {/* <>{reviewElement}</> */}
       </div>
     </div>
   )

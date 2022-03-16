@@ -91,6 +91,10 @@
   width: 4px;
 }
 
+#new_review{
+  margin-top: 30px;
+}
+
 
 @media screen and (min-width: 700px){
     #movie_obj{
