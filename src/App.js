@@ -4,7 +4,6 @@ import { ToastContainer } from 'react-toastify'
 import Header from './components/Header'
 import Login from './pages/Login'
 import Register from './pages/Register'
-import Footer from './components/Footer'
 import Home from './pages/Home'
 import Movie from './pages/Movie'
 import Profile from './pages/Profile'
@@ -13,7 +12,6 @@ function App() {
   return (
     <BrowserRouter>
       <div className="mx-auto ">
-        <Header />
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
@@ -24,7 +22,6 @@ function App() {
           <Route path="/user/:id/create" element={<Profile />} />
         </Routes>
         <ToastContainer />
-        <Footer />
       </div>
     </BrowserRouter>
   )

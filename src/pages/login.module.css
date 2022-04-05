@@ -1,0 +1,154 @@
+#main {
+    background-image: url("./../img/bg.svg");
+    background-color: rgba(0, 0, 0, 0.5);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    min-height: 100vh;
+
+}
+
+#section_1 {
+    width: 100%;
+    padding-top: 40px;
+    padding-bottom: 50px;
+    margin-bottom: 150px;
+}
+
+#section_1 h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #fff;
+    font-family: montserrat;
+    font-size: 34px;
+}
+
+#img_container {
+    display: flex;
+}
+
+#img {
+    margin: 20px 0;
+}
+
+#form_container {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+#form input {
+    display: block;
+    border-radius: 2.9px;
+    padding: 14px 8px;
+    outline: none;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-size: 17px;
+    border: 1px solid rgba(229, 231, 235, 0.4);
+    line-height: 12px;
+    margin-bottom: 20px;
+    font-family: montserrat;
+}
+
+button {
+    text-align: left;
+    padding: 12px 28px;
+    border-radius: 3px;
+    outline: none;
+    border: none;
+    border: 1px solid rgba(229, 231, 235, 0.4);
+    font-size: 14px;
+    font-family: montserrat;
+}
+
+button:hover {
+    background-color: #D89336;
+    color: #fff;
+}
+
+#button_box {
+    display: flex;
+    /* justify-content: flex-start; */
+}
+
+#form input::placeholder {
+    font-size: 16px;
+    font-family: montserrat;
+}
+
+
+
+@media screen and (min-width: 601px) {
+    #img {
+        max-width: 240px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    form input {
+        width: 400px;
+    }
+
+    #button_box {
+        width: 400px;
+    }
+}
+
+@media screen and (max-width: 599px) {
+    #form input {
+        width: 70%;
+    }
+
+    #button_box {
+        width: 70%;
+    }
+
+    #img {
+        max-width: 200px;
+        margin: 0 auto;
+    }
+
+    #header {
+        margin-bottom: 0;
+    }
+
+    #form_container {
+        width: 100%;
+    }
+
+    #section_1 {
+        padding: 0px;
+        padding-top: 30px;
+    }
+
+
+}
+
+@media screen and (min-width: 921px) {
+    form input {
+        max-width: 450px;
+    }
+
+    #button_box {
+        max-width: 450px;
+    }
+
+    #img {
+        max-width: 400px;
+        margin: 0 auto;
+        text-align: center;
+    }
+}

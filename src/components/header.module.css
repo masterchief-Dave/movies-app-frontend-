@@ -1,0 +1,63 @@
+#header {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    /* background-color: rgb(30, 39, 73); */
+    /* background-color: #D4FF70; */
+    background-image: url('./../img/header.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    font-family: 'ibm plex sans';
+    position: fixed;
+    top: 0;
+    width: 100%;
+    left: 0;
+}
+
+#header_1 {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    /* background-color: rgb(30, 39, 73); */
+    /* background-color: #D4FF70; */
+    background-image: url('./../img/header.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    font-family: 'ibm plex sans';
+}
+
+.navbar {
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    background-color: rgba(0, 0, 0, 0.65);
+}
+
+.btn {
+    padding: 5px 12px;
+    background-color: #1e2749;
+    color: #fafaff;
+    border-radius: 3px;
+}
+
+.at_login {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+#login {
+    background-color: #D89336;
+    color: #000;
+}
+
+#register {
+    background-color: #bb3b0e;
+    color: #000;
+}
+
+#logout {
+    background-color: #bb3b0e;
+    color: #000;
+    color: #fafaff;
+}
