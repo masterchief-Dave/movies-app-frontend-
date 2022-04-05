@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { reset, getMovies } from './../features/movies/movies-slice'
 import { useEffect } from 'react'
 import logo1 from './../img1.jpg'
+import Header from '../components/Header'
 
 function Home() {
   const movies = useSelector((state) => state.movie)
@@ -42,7 +43,7 @@ function Home() {
             </p>
 
             <Link to={`/movies/${el._id}`}>
-              <button className="btn btn-primary">more ...</button>
+              <button className={styles.btn_link}>more ...</button>
             </Link>
           </div>
         </div>
@@ -51,22 +52,25 @@ function Home() {
 
   return (
     <>
+    <Header />
       <div className={styles.home}>
-        <div className={styles.query}>
-          <h2 className={styles.filter_title}> Filter </h2>
-          <div className={styles.filter}>
-            <button className="btn btn-primary"> Comedy </button>
-            <button className="btn btn-primary"> Adventure </button>
-            <button className="btn btn-primary"> Anime </button>
-            <button className="btn btn-primary"> Drama </button>
-            <button className="btn btn-primary"> Fantasy </button>
-            <button className="btn btn-primary"> Adventure </button>
+        <div className={styles.home_container}>
+          <div className={styles.query}>
+            <h2 className={styles.filter_title}> Filter </h2>
+            <div className={styles.filter}>
+              <button className={styles.btn_link}> Comedy </button>
+              <button className={styles.btn_link}> Adventure </button>
+              <button className={styles.btn_link}> Anime </button>
+              <button className={styles.btn_link}> Drama </button>
+              <button className={styles.btn_link}> Fantasy </button>
+              <button className={styles.btn_link}> Adventure </button>
+            </div>
           </div>
+          <div className={styles.movies}>{dataElements}</div>
         </div>
-        <div className={styles.movies}>{dataElements}</div>
       </div>
     </>
-  )
+  ) 
 }
 
 export default Home

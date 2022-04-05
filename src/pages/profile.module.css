@@ -57,7 +57,7 @@
     display: flex;
     justify-content: center;
     position: relative;
-    height: 700px;
+    min-height: 750px;
 }
 
 input{
@@ -77,3 +77,42 @@ input{
 #password_editbtn{
     position: absolute;
 } */
+
+@media screen and (max-width: 767px) {
+    #user_profile{
+        flex-direction: column;
+    }
+
+    #user_profile ul {
+        width: 100%;
+    }
+
+    #password_btn{
+        display: flex;
+        gap: 10px;
+    }
+
+    #password_editbtn{
+        font-size: 12px;
+        font-weight: 400;
+    }
+
+    #password_savebtn{
+        font-size: 12px;
+        font-weight: 400;
+    }
+
+    #edit_settings{
+        font-size: 12px;
+        font-weight: 400;
+    }
+
+    #user_settings{
+        width: 80%;
+    }
+
+    /* create movies */
+    #admin_user_create{
+        width: 80%;
+    }
+}

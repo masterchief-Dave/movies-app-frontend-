@@ -1,6 +1,42 @@
+.home{
+  /* background-image: url(./../img/bg.svg); */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  /* background-color: rgba(0, 0, 0, .6); */
+  padding-top: 40px;
+  background-color: #fafaff;
+}
+
+a{
+  font-family: 'ibm plex sans';
+  font-weight: 600;
+}
+
+.btn {
+  padding: 5px 12px;
+  background-color: #1e2749;
+  color: #fafaff;
+  border-radius: 3px;
+}
+
+.btn_link{
+  font-family: 'ibm plex sans';
+ background-color: rgb(30, 39, 73);
+  color: #fafaff;
+  border-radius: 3px;
+  padding: 10px 12px;
+  font-weight: 600;
+}
+
+.home_container{
+  /* background-color: rgba(0, 0, 0, .62); */
+  padding-top: 40px;
+}
+
 /*@media screen and (max-width: 767px) {*/
 @media screen and (max-width: 600px) {
-  .home {
+  .home_container {
     /* background-color: orange; */
   }
 
@@ -43,7 +79,7 @@
 }
 
 @media screen and (min-width: 601px) {
-  .home {
+  .home_container {
     /* background-color: tomato; */
     display: block;
   }
@@ -85,12 +121,13 @@
 }
 
 @media screen and (min-width: 900px) {
-  .home {
+  .home_container {
     /* background-color: dodgerblue; */
     display: flex;
     flex-direction: row-reverse;
     align-items: flex-start;
     gap: 50px;
+    padding: 50px;
   }
 
   .movies {

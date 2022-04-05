@@ -4,6 +4,7 @@ import { signup, reset } from '../features/auth/auth-slice'
 import 'react-toastify/dist/ReactToastify.css'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
+import Header from '../components/Header'
 
 function Register() {
   const dispatch = useDispatch()
@@ -57,6 +58,7 @@ function Register() {
   }
   return (
     <>
+    <Header text='register'/>
       <div className="w-full mt-10 max-w-md mx-auto">
         <h1 className="text-center font-bold text-lg">Register</h1>
 
