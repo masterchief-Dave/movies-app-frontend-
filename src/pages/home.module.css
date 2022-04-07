@@ -1,14 +1,12 @@
 .home{
-  /* background-image: url(./../img/bg.svg); */
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  /* background-color: rgba(0, 0, 0, .6); */
   padding-top: 40px;
-  background-color: #222;
+  /* background-color: #222; */
+  background-color: #02060b;
+  border-bottom: 1px solid #fafaff;
 }
-
-
 
 a{
   font-family: 'ibm plex sans';
@@ -23,7 +21,6 @@ a{
 
 .btn {
   padding: 5px 12px;
-  /* background-color: #1e2749; */
   background-color: #BC482B;
   color: #fafaff;
   border-radius: 3px;
@@ -31,7 +28,6 @@ a{
 
 .btn_link{
   font-family: 'ibm plex sans';
- /* background-color: rgb(30, 39, 73); */
   background-color: #B6C423;
   color: #000;
   border-radius: 3px;
@@ -42,7 +38,6 @@ a{
 }
 
 .home_container{
-  /* background-color: rgba(0, 0, 0, .62); */
   padding-top: 40px;
 }
 
@@ -93,8 +88,6 @@ a{
   }
 
   .movies img {
-    /* height: 300px; */
-    /* width: 100%; */
     margin-bottom: 14px;
   }
 
@@ -164,8 +157,6 @@ a{
   }
 
   .movies {
-    /* display: flex; */
-    /* gap: 20px; */
     justify-content: space-around;
     padding: 20px ;
     align-items: flex-start;
@@ -179,7 +170,6 @@ a{
 @media screen and (min-width: 701px) {
   .movies_obj {
     display: flex;
-    /* gap: 50px; */
     margin-bottom: 40px;
   }
 
@@ -194,8 +184,6 @@ a{
   .movies_desc{
     width: 50%;
   }
-
-
 }
 
 @media screen and (min-width: 900px) {
@@ -242,10 +230,6 @@ a{
   .home {
     /* background-color: yellow; */
   }
-
-  /* .movies {
-		display: flex;
-	} */
 
   .movies img {
     /* width: 50%; */
