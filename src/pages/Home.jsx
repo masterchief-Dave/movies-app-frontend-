@@ -5,6 +5,7 @@ import { reset, getMovies } from './../features/movies/movies-slice'
 import { useEffect } from 'react'
 import logo1 from './../img1.jpg'
 import Header from '../components/Header'
+import Footer from '../components/Footer'
 
 function Home() {
   const movies = useSelector((state) => state.movie)
@@ -21,11 +22,13 @@ function Home() {
     movies.movies.data.movies.map((el) => {
       return (
         <div className={styles.movies_obj} key={el._id}>
-          <img
-            className="object-cover"
-            src={logo1}
-            alt="Man looking at item at a store"
-          />
+          <div className={styles.img_container}>
+            <img
+              className="object-cover"
+              src={logo1}
+              alt="Man looking at item at a store"
+            />
+          </div>
 
           <div className={styles.movies_desc}>
             <div
@@ -42,8 +45,8 @@ function Home() {
               {el.storyline.substring(0, 100)}...
             </p>
 
-            <Link to={`/movies/${el._id}`}>
-              <button className={styles.btn_link}>more ...</button>
+            <Link to={`/movies/${el._id}`} className={styles.movies_link}>
+              <button className={styles.btn_link} id={styles.btn}>more ...</button>
             </Link>
           </div>
         </div>
@@ -52,11 +55,11 @@ function Home() {
 
   return (
     <>
-    <Header />
+      <Header />
       <div className={styles.home}>
         <div className={styles.home_container}>
           <div className={styles.query}>
-            <h2 className={styles.filter_title}> Filter </h2>
+            <h2 id={styles.filter_title}> Filter </h2>
             <div className={styles.filter}>
               <button className={styles.btn_link}> Comedy </button>
               <button className={styles.btn_link}> Adventure </button>
@@ -69,8 +72,9 @@ function Home() {
           <div className={styles.movies}>{dataElements}</div>
         </div>
       </div>
+      <Footer />
     </>
-  ) 
+  )
 }
 
 export default Home

@@ -11,7 +11,7 @@ import Profile from './pages/Profile'
 function App() {
   return (
     <BrowserRouter>
-      <div className="mx-auto ">
+      <div id="app_container">
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

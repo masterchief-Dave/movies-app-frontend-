@@ -6,19 +6,29 @@
 
 #movie_obj {
   margin-bottom: 40px;
-  padding: 20px;
+  padding-top: 100px;
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
   /* background-image: linear-gradient(to right, #ec4899 , #8b5cf6); */
   /* className="bg-gradient-to-r from-purple-500 to-pink-500" */
 }
 
-.movie_obj img{
-    margin-bottom: 12px;
+#img_container {
+  width: 300px;
+  margin: 0 auto;
 }
 
-.movie_reviews{
-    padding: 20px;
+.movie_obj img {
+  width: 100%;
+  margin-bottom: 12px;
+  object-fit: contain;
+}
+
+.movie_reviews {
+  padding: 20px;
+  font-family: montserrat;
+  color: #fafaff;
+
 }
 
 .movie_review_title:before {
@@ -61,18 +71,25 @@
   width: 4px;
 }
 
-.new_review_user{
-    margin-bottom: 20px;
-    align-self: center;
-    vertical-align: middle;
+.new_review_user {
+  margin-bottom: 20px;
+  align-self: center;
+  vertical-align: middle;
+  font-size: 17px;
 }
 
 #movie_details * {
-    margin-top: 10px;
+  margin-top: 10px;
+  font-family: montserrat;
+  color: #fafaff;
 }
 
-#review{
+#review {
   display: block;
+  font-family: montserrat;
+  margin-top: 30px;
+  width: 300px;
+  height: 200px;
 }
 
 #element {
@@ -80,8 +97,8 @@
   margin-right: 4px;
 }
 
-#element:not(:last-child):after{
-  
+#element:not(:last-child):after {
+
   /* background-color: #f5c518; */
   content: ',';
   /* margin-left: -0.75rem; */
@@ -91,18 +108,67 @@
   width: 4px;
 }
 
-#new_review{
+#new_review {
   margin-top: 30px;
 }
 
+#rating{
+  column-gap: 6px;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+}
 
-@media screen and (min-width: 700px){
-    #movie_obj{
-        display: flex;
-        gap: 20px;
-    }
+@media screen and (min-width: 768px) {
+  #movie_obj {
+    display: flex;
+    gap: 20px;
+  }
 
-    #movie_obj img {
-        width: 40%;
-    }
+  #img_container {
+    max-width: 50%;
+  }
+
+  #movie_details {
+    width: 50%;
+  }
+
+  #movie_obj img {
+    width: 100%;
+  }
+
+  .new_review_user {
+    font-size: 25px;
+  }
+
+  .new_review_user:before {
+    background-color: #f5c518;
+    content: '';
+    margin-left: -0.75rem;
+    align-self: flex-start;
+    position: absolute;
+    height: 40px;
+    width: 4px;
+  }
+}
+
+@media screen and (min-width: 991px) {
+  #movie_obj {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+@media screen and (min-width: 1100px) {
+  #movie_obj {
+    gap: 2px;
+  }
+
+  #movie_details {
+    width: 60%;
+  }
+
+  #img_container {
+    max-width: 40%;
+  }
 }

@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import styles from './login.module.css'
 import Header from './../components/Header'
 import Footer from './../components/Footer'
+import login_img from './../img/login.svg'
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -57,8 +58,9 @@ function Login() {
               <div id={styles.img_container}>
                 {/* <img src={login} alt="login" id={styles.img} /> */}
               </div>
-              <h1>Login</h1>
               <form id={styles.form} onSubmit={handleSubmit} autoComplete='off'>
+                <img src={login_img} id={styles.login_img}/>
+              <h1>Login</h1>
                 <input
                   type="text"
                   placeholder="email"
