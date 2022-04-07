@@ -1,5 +1,68 @@
-footer{
-    margin-top: 40px;
+footer {
     color: #fafaff;
-    /* background-color: #222; */
+    padding: 40px 30px 50px;
+    font-family: Montserrat;
+    font-weight: 600;
+    background-color: #02060b;
+}
+
+.git {
+    height: 24px;
+    width: 24px;
+}
+
+#footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+   
+}
+
+#footer_name {
+    width: 60%;
+    margin-right: auto;
+    font-size: small;
+}
+
+#footer_links {
+    width: 40%;
+    font-size: small;
+}
+
+#footer_links h3 {
+    margin-bottom: 10px;
+}
+
+#links {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 30px;
+}
+
+.icons h4 {
+    margin-bottom: 20px;
+    font-size: small;
+}
+
+#social {
+    display: flex;
+    column-gap: 20px;
+    align-items: center;
+}
+
+.text {
+    text-align: center;
+    margin-top: 30px;
+    font-family: "Merriweather Sans";
+    font-weight: 200;
+    font-size: 10px;
+}
+
+@media screen and (min-width: 900px) {
+    .foot {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
 }
